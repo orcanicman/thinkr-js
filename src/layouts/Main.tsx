@@ -1,5 +1,8 @@
 import React from "react";
 import Logo from "../assets/logo";
+import { HighlightedPosts } from "./components/TopBar/HighlightedPosts";
+import { Profile } from "./components/TopBar/Profile";
+import { TopBar } from "./components/TopBar/TopBar";
 
 interface MainProps {
   children: React.ReactNode;
@@ -8,27 +11,15 @@ interface MainProps {
 const MainLayout: React.FC<MainProps> = ({ children }) => {
   return (
     <div className="bg-mainDark min-h-screen text-mainLight">
+      <TopBar />
       <div className="flex">
-        <div className="w-[20rem] flex p-6 items-center justify-between">
-          <div className="mr-4">
-            <Logo />
-          </div>
-          <div className="">
-            <input
-              className="bg-darkTransparentHighlight p-2 rounded-2xl"
-              placeholder="Searchbar..."
-            />
-          </div>
+        <div className="w-[20rem] p-6">
+          <Profile />
         </div>
-        <div className="grow p-6 text-2xl flex font-bold items-center">
-          PageTitle
-        </div>
-        <div className="w-[20rem] p-6 flex items-center">right..</div>
-      </div>
-      <div className="flex">
-        <div className="w-[20rem] p-6">left..</div>
         <main className="grow p-6">{children}</main>
-        <div className="w-[20rem] p-6">right..</div>
+        <div className="w-[20rem] p-6">
+          <HighlightedPosts />
+        </div>
       </div>
     </div>
   );
