@@ -10,11 +10,14 @@ const MainLayout: React.FC<MainProps> = ({ children }) => {
     <div className="bg-mainDark min-h-screen text-mainLight">
       <div className="flex">
         <div className="w-[20rem] flex p-6 items-center justify-between">
-          <div>
+          <div className="mr-4">
             <Logo />
           </div>
           <div className="">
-            <input placeholder="Searchbar..." />
+            <input
+              className="bg-darkTransparentHighlight p-2 rounded-2xl"
+              placeholder="Searchbar..."
+            />
           </div>
         </div>
         <div className="grow p-6 text-2xl flex font-bold items-center">
