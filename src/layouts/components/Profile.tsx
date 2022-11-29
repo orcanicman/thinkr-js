@@ -1,5 +1,5 @@
-import TestImage from "../../../assets/test_background_img.jpg";
-import ProfileImage from "../../../assets/Profile_Image.png";
+import TestImage from "../../assets/test_background_img.jpg";
+import ProfileImage from "../../assets/Profile_Image.png";
 
 export const Profile = () => {
   return (

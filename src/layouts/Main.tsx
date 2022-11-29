@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../assets/logo";
 import { HighlightedPosts } from "./components/TopBar/HighlightedPosts";
-import { Profile } from "./components/TopBar/Profile";
+import { Profile } from "./components/Profile";
 import { TopBar } from "./components/TopBar/TopBar";
 
 interface MainProps {
