@@ -13,20 +13,16 @@ export const HighlightedItem: React.FC<HighlightedItemProps> = ({
   post,
 }: HighlightedItemProps) => {
   return (
-    <div>
-      <div
-        className={`flex justify-between ${
-          post && "hover:underline cursor-pointer"
-        }`}
-      >
-        <div className="">{children}</div>
-        {logo && <div>{logo}</div>}
+    <div className="flex justify-between cursor-pointer">
+      <div>
+        <div className={`${post && "hover:underline"}`}>{children}</div>
+        {post && (
+          <div className="font-light text-sm text-gray">
+            likes: {post.likes.length}
+          </div>
+        )}
       </div>
-      {post && (
-        <div className="font-light text-sm text-gray">
-          likes: {post.likes.length}
-        </div>
-      )}
+      {logo && <div>{logo}</div>}
     </div>
   );
 };
