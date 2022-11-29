@@ -1,12 +1,34 @@
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "../../../assets/logo";
 
 export const TopBar = () => {
+  const location = useLocation();
+  const [logoClicked, setLogoClicked] = useState(0);
+
+  const handleEasterEgg = (
+    _event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    if (location.pathname === "/") {
+      // add check if user is scrolled all the way up.
+      setLogoClicked(logoClicked + 1);
+    }
+  };
+
   return (
     <div className="flex">
-      <div className="w-[20rem] flex p-6 items-center">
-        <div className="mr-4">
-          <Logo />
-        </div>
+      <div className="w-[24rem] flex p-6 items-center">
+        <Link to={"/"} className="mr-4">
+          <div
+            onClick={handleEasterEgg}
+            style={{
+              transform: `rotate(${logoClicked * 90 + "deg"})`,
+            }}
+            className={`cursor-pointer transition-all`}
+          >
+            <Logo />
+          </div>
+        </Link>
 
         <input
           className="bg-darkTransparentHighlight p-2 rounded-2xl w-full"
@@ -16,7 +38,7 @@ export const TopBar = () => {
       <div className="grow p-6 text-2xl flex font-bold items-center">
         PageTitle
       </div>
-      <div className="w-[20rem] p-6 flex items-center">right..</div>
+      <div className="w-[24rem] p-6 flex items-center">right..</div>
     </div>
   );
 };
