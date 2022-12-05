@@ -1,13 +1,20 @@
 import React from "react";
 import MainLayout from "../../layouts/Main";
-import { NotLoggedInLayout } from "../../layouts/NotLoggedIn";
+import { AuthLayout } from "../../layouts/AuthLayout";
 
 interface LoginProps {}
 
 export const Login: React.FC<LoginProps> = () => {
   return (
-    <NotLoggedInLayout>
-      <div className="">Login...</div>
-    </NotLoggedInLayout>
+    <AuthLayout
+      title="Login"
+      subTitle="Sing in to see what your friends are thinking!"
+    >
+      <form>
+        <input placeholder="your name" />
+        <input placeholder="your password" />
+        <input />
+      </form>
+    </AuthLayout>
   );
 };

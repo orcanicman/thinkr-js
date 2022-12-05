@@ -12,8 +12,8 @@ export const Profile = () => {
         />
       </div>
       <div className="border-b border-b-gray text-center">
-        <div className="text-xl font-bold">Nick Gur</div>
-        <div className="text-gray text-xs mb-2">@Designergurrr</div>
+        <div className="text-xl font-bold">John Doe</div>
+        <div className="text-gray text-xs mb-2">@John Doe</div>
         <div className="text-center text-sm mb-6">
           Profesional software engineer
         </div>
