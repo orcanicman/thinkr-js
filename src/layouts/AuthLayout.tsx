@@ -28,7 +28,7 @@ export const AuthLayout = ({
                 <h3>{subTitle}</h3>
                 <h1>{title}</h1>
 
-                <div className=" border-b border-b-gray items-center">
+                <div>
                     {children}
                 </div>
 
