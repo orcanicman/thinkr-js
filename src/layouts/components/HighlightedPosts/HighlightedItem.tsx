@@ -1,10 +1,10 @@
 import React from "react";
-import { IPost } from "./HighlightedPosts";
+import { Post } from "../../../types/Post";
 
 interface HighlightedItemProps {
   children: React.ReactNode;
   logo?: React.ReactNode;
-  post?: IPost;
+  post?: Post;
 }
 
 export const HighlightedItem: React.FC<HighlightedItemProps> = ({
