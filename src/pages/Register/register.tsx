@@ -6,13 +6,15 @@ interface RegisterProps { }
 export const Register: React.FC<RegisterProps> = ({ }) => {
     return (
         <AuthLayout title="" subTitle="" >
-            <div className="border-b border-b-gray items-center">
-                <form className="flex flex-column ">
+            <div className="border-b border-b-gray text-center">
+                <form className="flex flex-column">
                     <input placeholder="usename" />
                     <input placeholder="email" />
                     <input placeholder="password" />
                 </form>
             </div>
+
+
         </AuthLayout>
     );
 };
