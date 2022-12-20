@@ -27,19 +27,19 @@ export const Profile = () => {
       </div>
       <div className="border-b border-b-gray text-center">
         <div className="text-xl font-bold">{user.profile.name}</div>
-        <div className="text-gray text-xs mb-2">@{user.profile.tag}</div>
-        <div className="text-center text-sm mb-6">{user.profile.bio}</div>
+        <div className="text-gray text-sm mb-2">@{user.profile.tag}</div>
+        <div className="text-center mb-6">{user.profile.bio}</div>
       </div>
 
       <div className="flex text-center">
-        <div className="basis-1/2  border-r border-r-gray mt-2 mb-2 text-sm">
+        <div className="basis-1/2 border-r border-r-gray mt-2 mb-2 text-sm">
           {user.following.length}
-          <div className="basis-1/2 text-gray text-xs">Following</div>
+          <div className="basis-1/2 text-gray">Following</div>
         </div>
 
-        <div className="basis-1/2 text-sm mt-2">
+        <div className="basis-1/2 mt-2 text-sm">
           {user.followers.length}
-          <div className="basis-1/2 text-gray text-xs">Followers</div>
+          <div className="basis-1/2 text-gray">Followers</div>
         </div>
       </div>
       <div className="border-t border-t-gray p-4 w-full justify-center flex">
