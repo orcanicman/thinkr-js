@@ -17,7 +17,7 @@ export const TopBar = () => {
 
   return (
     <div className="flex">
-      <div className="w-[24rem] flex p-6 items-center">
+      <div className="hidden md:flex w-[16rem] xl:w-[24rem] p-6 items-center">
         <Link to={"/"} className="mr-4">
           <div
             onClick={handleEasterEgg}
@@ -31,14 +31,16 @@ export const TopBar = () => {
         </Link>
 
         <input
-          className="bg-darkTransparentHighlight p-2 rounded-2xl w-full"
+          className="bg-darkTransparentHighlight px-4 py-2 rounded-2xl w-full"
           placeholder="Look for something.."
         />
       </div>
       <div className="grow p-6 text-2xl flex font-bold items-center">
         PageTitle
       </div>
-      <div className="w-[24rem] p-6 flex items-center">right..</div>
+      <div className="hidden lg:flex md:w-[16rem] xl:w-[24rem] p-6 items-center">
+        right..
+      </div>
     </div>
   );
 };
