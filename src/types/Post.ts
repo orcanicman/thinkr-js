@@ -5,4 +5,5 @@ export type Post = {
   content: string;
   likes: User[];
   comments: Comment[];
+  createdAt: Date;
 };

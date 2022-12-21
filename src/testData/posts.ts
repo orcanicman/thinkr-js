@@ -6,6 +6,7 @@ export const post: Post = {
   content: "this is a test post...",
   comments: [],
   likes: [],
+  createdAt: new Date(),
 };
 
 export const posts: Post[] = [
@@ -15,5 +16,6 @@ export const posts: Post[] = [
     content: "this is a second test post...",
     comments: [],
     likes: [],
+    createdAt: new Date("12/21/2022"),
   },
 ];
