@@ -3,6 +3,7 @@ import { user } from "./users";
 
 export const post: Post = {
   user: user,
+  id: "dy23ui34o624wy12eq",
   content: "this is a test post...",
   comments: [],
   likes: [],
@@ -12,6 +13,7 @@ export const post: Post = {
 export const posts: Post[] = [
   post,
   {
+    id: "dy23ui34o624wy12e1",
     user: user,
     content: "this is a second test post...",
     comments: [],
