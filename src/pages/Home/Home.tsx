@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import MainLayout from "../../layouts/Main";
-import { PostComponent } from "./components/PostComponent";
-import { WritePost } from "./components/WritePost";
 import { posts as testPosts } from "../../testData/posts";
 import { Post } from "../../types/Post";
+import { Post as PostComponent } from "./components/Post";
+import { WritePost } from "./components/WritePost";
 
 interface HomeProps {}
 
