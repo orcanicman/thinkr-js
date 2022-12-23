@@ -1,6 +1,6 @@
 import React from "react";
 import MainLayout from "../../layouts/Main";
-import { AuthLayout } from "../../layouts/AuthLayout";
+import { NotLoggedInLayout } from "../../layouts/NotLoggedIn";
 
 interface LoginProps { }
 
