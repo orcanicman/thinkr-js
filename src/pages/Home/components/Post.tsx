@@ -7,6 +7,7 @@ import { RepostIcon } from "../../../assets/RepostIcon";
 import { CommentIcon } from "../../../assets/CommentIcon";
 import { relativeDateFormatter } from "../../../helpers/relativeDateFormatter";
 import { ShareIcon } from "../../../assets/ShareIcon";
+import { DotMenuIcon } from "../../../assets/DotMenuIcon";
 
 interface PostProps {
   post: IPost;
@@ -14,14 +15,18 @@ interface PostProps {
 
 export const Post: React.FC<PostProps> = ({ post }) => {
   const navigate = useNavigate();
+
   return (
-    <button
+    <div
       onClick={() => navigate(`/${post.user?.profile.tag}/${post.id}`)}
-      className="flex w-full text-left bg-darkTransparentHighlight hover:bg-darkHighlight rounded-xl mb-8 p-6 -z-10"
+      className="flex w-full text-left bg-darkTransparentHighlight hover:bg-darkHighlight rounded-xl mb-8 p-6 -z-10 hover:cursor-pointer duration-75 ease-out transition-all"
+      tabIndex={0}
     >
-      <div className="mr-6 relative">
-        {/* overlay */}
-        <Link to={`/${post.user?.profile.tag}`}>
+      <div className="mr-6 relative min-w-[4rem]">
+        <Link
+          onClick={(e) => e.stopPropagation()}
+          to={`/${post.user?.profile.tag}`}
+        >
           <div className="absolute top-0 left-0 w-16 h-16 rounded-full shadow-black shadow-[inset_0px_0px_6px_rgba(0,0,0,0.5)] opacity-0 hover:opacity-100"></div>
           <img
             alt="Profile"
@@ -31,18 +36,20 @@ export const Post: React.FC<PostProps> = ({ post }) => {
         </Link>
       </div>
       <div className="grow">
-        <div className="flex justify-between mb-4 items-baseline">
+        <div className="flex justify-between mb-4 items-start">
           <div className="flex flex-col">
-            <div className="flex space-x-2 items-baseline">
+            <div className="flex flex-wrap items-baseline">
               <Link
+                onClick={(e) => e.stopPropagation()}
                 to={`/${post.user?.profile.tag}`}
-                className="text-lg font-bold hover:underline"
+                className="text-lg font-bold hover:underline mr-2 max-w-[5rem] sm:max-w-sm overflow-ellipsis overflow-hidden whitespace-nowrap break-words"
               >
                 {post.user?.profile.name}
               </Link>
               <Link
+                onClick={(e) => e.stopPropagation()}
                 to={`/${post.user?.profile.tag}`}
-                className="text-gray text-sm hover:underline"
+                className="text-gray text-sm hover:underline max-w-[5rem] sm:max-w-sm overflow-ellipsis overflow-hidden whitespace-nowrap break-words"
               >
                 @{post.user?.profile.tag}
               </Link>
@@ -52,12 +59,17 @@ export const Post: React.FC<PostProps> = ({ post }) => {
             </div>
           </div>
 
-          <button className="text-gray">...</button>
+          <button
+            onClick={(e) => e.stopPropagation()}
+            className="hover:bg-mainDark rounded-full p-1.5 duration-75 ease-out transition-all"
+          >
+            <DotMenuIcon />
+          </button>
         </div>
 
         <div className="mb-8">{post.content}</div>
 
-        <div className="flex justify-between">
+        <div className="flex justify-between flex-wrap">
           <Button
             className="bg-red"
             icon={<LikeIcon />}
@@ -79,7 +91,7 @@ export const Post: React.FC<PostProps> = ({ post }) => {
           <Button icon={<ShareIcon />} title="Share" />
         </div>
       </div>
-    </button>
+    </div>
   );
 };
 
@@ -89,11 +101,14 @@ const Button: React.FC<{
   amount?: number;
   className?: string | undefined;
   onClick?: () => void;
-}> = ({ title, icon, amount, className }) => {
+}> = ({ title, icon, amount, className, onClick }) => {
   return (
     <button
-      onSubmit={() => console.log("help")}
-      className="border-gray border px-2 py-1 rounded-3xl relative hover:bg-mainDark duration-100 transition-all"
+      onClick={(event) => {
+        event.stopPropagation();
+        onClick && onClick();
+      }}
+      className="border-gray border mx-2 px-2 py-1 rounded-3xl relative hover:bg-mainDark duration-75 transition-all"
     >
       {amount !== undefined && (
         <div
@@ -109,7 +124,7 @@ const Button: React.FC<{
       )}
       <div className={`flex items-center space-x-2 p-1`}>
         <div>{icon}</div>
-        <div>{title}</div>
+        <div className="hidden md:block">{title}</div>
       </div>
     </button>
   );
