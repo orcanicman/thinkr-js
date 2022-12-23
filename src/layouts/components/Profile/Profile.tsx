@@ -32,15 +32,21 @@ export const Profile = () => {
       </div>
 
       <div className="flex text-center">
-        <div className="basis-1/2 border-r border-r-gray mt-2 mb-2 text-sm">
+        <Link
+          to={`/${user.profile.tag}/following`}
+          className="basis-1/2 py-2 hover:cursor-pointer hover:bg-darkHighlight border-r border-r-gray text-sm"
+        >
           {user.following.length}
-          <div className="basis-1/2 text-gray">Following</div>
-        </div>
+          <div className="text-gray">Following</div>
+        </Link>
 
-        <div className="basis-1/2 mt-2 text-sm">
+        <Link
+          to={`/${user.profile.tag}/followers`}
+          className="basis-1/2 py-2 hover:cursor-pointer hover:bg-darkHighlight text-sm"
+        >
           {user.followers.length}
-          <div className="basis-1/2 text-gray">Followers</div>
-        </div>
+          <div className="text-gray">Followers</div>
+        </Link>
       </div>
       <div className="border-t border-t-gray p-4 w-full justify-center flex">
         <Link
