@@ -12,7 +12,7 @@ const MainLayout: React.FC<MainProps> = ({ children }) => {
     <div className="bg-mainDark min-h-screen text-mainLight">
       <TopBar />
       <div className="flex">
-        <div className="hidden md:block md:w-[16rem] xl:w-[24rem] p-6">
+        <div className="hidden md:block md:w-[16rem] md:min-w-[16rem] xl:min-w-[24rem] xl:w-[24rem] p-6">
           <Profile />
         </div>
         <main className="grow p-6">{children}</main>
