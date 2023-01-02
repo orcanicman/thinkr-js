@@ -30,7 +30,7 @@ export const WritePost: React.FC<WritePostProps> = ({ user }) => {
 
 				<div className="relative w-full">
 					<div
-						className={`absolute top-0 left-0 text-gray p-1 ${
+						className={`absolute top-0 left-0 text-gray p-2 ${
 							value.length ? "opacity-0" : "opacity-100"
 						}`}
 					>
@@ -38,7 +38,7 @@ export const WritePost: React.FC<WritePostProps> = ({ user }) => {
 					</div>
 					<div
 						id="newPostInputField"
-						className="bg-darkTransparentHighlight outline-none resize-none mb-8 rounded-md p-1 w-full whitespace-pre-wrap break-all relative"
+						className="bg-darkTransparentHighlight outline-none resize-none mb-8 rounded-md p-2 w-full whitespace-pre-wrap break-all relative"
 						placeholder="What are you thinking about?"
 						contentEditable
 						onInput={inputFieldChange}
