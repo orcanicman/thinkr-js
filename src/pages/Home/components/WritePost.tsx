@@ -7,8 +7,6 @@ interface WritePostProps {
 }
 
 export const WritePost: React.FC<WritePostProps> = ({ user }) => {
-	//ideas -> takes in user to show user profile picture and maybe name
-	// -> to autogrow textarea need js on change ig could use it for a character counter in bottom left!
 	const [value, setValue] = useState("");
 	const maxCharCount: number = 200;
 
