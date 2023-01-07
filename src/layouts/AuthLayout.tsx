@@ -1,43 +1,22 @@
 import React from "react";
 import Logo from "../assets/logo";
 
-
-type AuthLayoutProps = {
-    title: string;
-    subTitle: string;
-};
-
+type AuthLayoutProps = {};
 
 export const AuthLayout = ({
-    title,
-    subTitle,
-    children,
+  children,
 }: React.PropsWithChildren<AuthLayoutProps>) => {
-    return (
+  return (
+    <div className="bg-mainDark h-screen">
+      <div className="bg-mainDark flex justify-center pt-6 pb-4">
+        <Logo />
+      </div>
 
-        <>
-
-            <div className=" flex justify-center pt-6 pb-4">
-                <Logo />
-            </div>
-
-            <div className=" text-center text-darkHighlight ">
-
-                <h2>Thinkr</h2>
-                <h3>"Speak your mind"</h3>
-                <h3>{subTitle}</h3>
-                <h1>{title}</h1>
-
-                <div className=" border-b border-b-gray items-center">
-                    {children}
-                </div>
-
-                < button > Darkmode</button >
-            </div>
-
-
-
-        </>
-
-    );
+      <div className="text-center text-white mb-6">
+        <h1 className="text-2xl font-bold">Thinkr</h1>
+        <h3 className="font-thin">"Speak your mind"</h3>
+      </div>
+      <div className="flex justify-center">{children}</div>
+    </div>
+  );
 };
