@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MainLayout from "../../layouts/Main";
 import { Post } from "../../types/Post";
 import { Post as PostComponent } from "../../pages/Home/components/Post";
@@ -17,6 +17,22 @@ export const ProfilePage: React.FC<ProfilePageProps> = () => {
 	const [currTab, setCurrTab] = useState<"posts" | "liked" | "comments">(
 		"posts"
 	);
+
+	useEffect(() => {
+		switch (currTab) {
+			case "posts":
+				setPosts(testPosts);
+				break;
+			case "liked":
+				setPosts([]);
+				break;
+			case "comments":
+				setPosts([]);
+				break;
+			default:
+				break;
+		}
+	}, [currTab]);
 
 	return (
 		<MainLayout>
@@ -39,7 +55,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = () => {
 				<div className="flex flex-row justify-between">
 					<div className="flex flex-col ml-10 mb-1 space-y-2">
 						<div className="space-x-3">
-							<span className="font-bold">{user.profile.name}</span>
+							<span className="font-bold text-2xl">{user.profile.name}</span>
 							<span className="text-gray">@{user.profile.tag}</span>
 						</div>
 						<div>{user.profile.bio}</div>
@@ -48,27 +64,42 @@ export const ProfilePage: React.FC<ProfilePageProps> = () => {
 				</div>
 
 				<div className="flex flex-row justify-between text-center">
-					<div className="p-3 flex-grow rounded-bl-2xl hover:bg-darkHighlight hover:cursor-pointer duration-75 ease-out transition-all flex flex-col justify-center items-center">
+					<div
+						className="p-3 flex-grow rounded-bl-2xl hover:bg-darkHighlight hover:cursor-pointer duration-75 ease-out transition-all flex flex-col justify-center items-center"
+						onClick={() => {
+							setCurrTab("posts");
+						}}
+					>
 						<p>Posts</p>
 						<div
-							className={`h-1 w-1/2 bg-green rounded-xl ${
-								currTab === "posts" ? "" : "hidden"
+							className={`h-1 bg-green rounded-xl duration-200 ease-in-out ${
+								currTab === "posts" ? "w-1/2" : "w-0"
 							}`}
 						></div>
 					</div>
-					<div className="p-3 flex-grow hover:bg-darkHighlight hover:cursor-pointer duration-75 ease-out transition-all flex flex-col justify-center items-center">
+					<div
+						className="p-3 flex-grow hover:bg-darkHighlight hover:cursor-pointer duration-75 ease-out transition-all flex flex-col justify-center items-center"
+						onClick={() => {
+							setCurrTab("liked");
+						}}
+					>
 						<p>Liked posts</p>
 						<div
-							className={`h-1 w-1/2 bg-green rounded-xl ${
-								currTab === "liked" ? "" : "hidden"
+							className={`h-1 bg-green rounded-xl duration-200 ease-in-out ${
+								currTab === "liked" ? "w-1/2" : "w-0"
 							}`}
 						></div>
 					</div>
-					<div className="p-3 flex-grow rounded-br-2xl hover:bg-darkHighlight hover:cursor-pointer duration-75 ease-out transition-all flex flex-col justify-center items-center">
+					<div
+						className="p-3 flex-grow rounded-br-2xl hover:bg-darkHighlight hover:cursor-pointer duration-75 ease-out transition-all flex flex-col justify-center items-center"
+						onClick={() => {
+							setCurrTab("comments");
+						}}
+					>
 						<p>Comments</p>
 						<div
-							className={`h-1 w-1/2 bg-green rounded-xl ${
-								currTab === "comments" ? "" : "hidden"
+							className={`h-1 w-1/2 bg-green rounded-xl duration-200 ease-in-out ${
+								currTab === "comments" ? "w-1/2" : "w-0"
 							}`}
 						></div>
 					</div>
