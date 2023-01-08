@@ -3,21 +3,52 @@ import MainLayout from "../../layouts/Main";
 import { Post } from "../../types/Post";
 import { Post as PostComponent } from "../../pages/Home/components/Post";
 import { User } from "../../types/User";
+import { Dialog } from "../../layouts/components/Dialog";
 
 import { posts as testPosts } from "../../testData/posts";
 import { user as testUser } from "../../testData/users";
 import BackgroundImage from "../../assets/test_background_img.jpg";
 import ProfileImage from "../../assets/Profile_Image.png";
+import { useNavigate } from "react-router-dom";
 
 interface ProfilePageProps {}
 
 export const ProfilePage: React.FC<ProfilePageProps> = () => {
+	const navigate = useNavigate();
+
 	const [user, setUser] = useState<User>(testUser);
 	const [posts, setPosts] = useState<Post[]>(testPosts);
 	const [currTab, setCurrTab] = useState<"posts" | "liked" | "comments">(
 		"posts"
 	);
 
+	//open dialog based on url
+	const url = window.location.pathname;
+	const [followersDialogOpen, setFollowersDialogOpen] = useState<boolean>(
+		url.includes("/followers")
+	);
+	const [followingDialogOpen, setFollowingDialogOpen] = useState<boolean>(
+		url.includes("/following")
+	);
+
+	//close dialog functions
+	const closeFollowers = () => {
+		setFollowersDialogOpen(false);
+		navigate(`/${user.profile.tag}`);
+	};
+	const closeFollowing = () => {
+		setFollowingDialogOpen(false);
+		navigate(`/${user.profile.tag}`);
+	};
+
+	useEffect(() => {
+		console.log(url);
+
+		setFollowersDialogOpen(url.includes("/followers"));
+		setFollowingDialogOpen(url.includes("/following"));
+	}, [url]);
+
+	//switch tabs
 	useEffect(() => {
 		switch (currTab) {
 			case "posts":
@@ -110,6 +141,31 @@ export const ProfilePage: React.FC<ProfilePageProps> = () => {
 					<PostComponent key={i} post={post} />
 				))}
 			</div>
+
+			<Dialog
+				open={followersDialogOpen}
+				closeFunction={closeFollowers}
+				component={
+					<>
+						{posts.map((post, i) => (
+							<PostComponent key={i} post={post} />
+						))}
+					</>
+				}
+				title="Followers"
+			/>
+			<Dialog
+				open={followingDialogOpen}
+				closeFunction={closeFollowing}
+				component={
+					<>
+						{posts.map((post, i) => (
+							<PostComponent key={i} post={post} />
+						))}
+					</>
+				}
+				title="Following"
+			/>
 		</MainLayout>
 	);
 };
