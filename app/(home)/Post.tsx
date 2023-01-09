@@ -23,8 +23,6 @@ interface PostProps {
 }
 
 export const Post: React.FC<PostProps> = ({ post }) => {
-  console.log(post);
-
   // const navigate = useRouter();
 
   return (

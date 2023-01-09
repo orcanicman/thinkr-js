@@ -2,7 +2,14 @@ import prisma from "../prisma/client";
 
 export async function getPosts() {
   try {
-    const posts = await prisma.user.findMany();
+    const posts = await prisma.post.findMany({
+      include: {
+        _count: true,
+        comments: true,
+        likedBy: true,
+        user: { include: { profile: true } },
+      },
+    });
     return { posts };
   } catch (error) {
     return { error };
