@@ -15,20 +15,17 @@ export const Login: React.FC<LoginProps> = () => {
         </h1>
 
         <input
-          className="mb-8 placeholder:text-white placeholder:font-light bg-darkTransparentHighlight px-4 py-3 rounded-xl w-full"
+          className="mb-8 placeholder:text-white placeholder:font-light text-white bg-darkTransparentHighlight px-4 py-3 rounded-xl w-full"
           placeholder="Email"
         />
 
         <input
-          className="mb-8 placeholder:text-white placeholder:font-light bg-darkTransparentHighlight px-4 py-3 rounded-xl w-full"
+          className="mb-8 placeholder:text-white placeholder:font-light text-white bg-darkTransparentHighlight px-4 py-3 rounded-xl w-full"
           placeholder="Password"
         />
 
         <div className="flex items-center">
-          <input
-            type="checkbox"
-            className="mr-4 default:ring-darkTransparentHighlight accent-darkTransparentHighlight"
-          />
+          <input type="checkbox" className="mr-4 ring-mainDark" />
           <div className="text-white font-light ">Remember me</div>
 
           <div className="ml-32 text-green "> Forgot password?</div>
