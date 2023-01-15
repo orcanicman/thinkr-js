@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useContext, useEffect, useState } from "react";
 import MainLayout from "../../layouts/Main";
 import { Post } from "../../types/Post";
 import { Post as PostComponent } from "../../pages/Home/components/Post";
 import { User } from "../../types/User";
-import { Dialog } from "../../layouts/components/Dialog";
+import { useNavigate } from "react-router-dom";
+import { DialogContext } from "../../layouts/components/Dialog/DialogContext";
 
 import { posts as testPosts } from "../../testData/posts";
 import { user as testUser } from "../../testData/users";
 import BackgroundImage from "../../assets/test_background_img.jpg";
 import ProfileImage from "../../assets/Profile_Image.png";
-import { useNavigate } from "react-router-dom";
+import { ListViewProfile } from "../../layouts/components/Profile/ListViewProfile";
 
 interface ProfilePageProps {}
 
@@ -22,48 +23,30 @@ export const ProfilePage: React.FC<ProfilePageProps> = () => {
 		"posts"
 	);
 
+	const [following, setFollowing] = useState<boolean>(false);
+	const dialogState = useContext(DialogContext);
+	// console.log(dialogState);
+	// dialogState?.setDialog(
+	// 	<>
+	// 		<ListViewProfile user={testUser}></ListViewProfile>
+	// 		<ListViewProfile user={testUser}></ListViewProfile>
+	// 		<ListViewProfile user={testUser}></ListViewProfile>
+	// 		<ListViewProfile user={testUser}></ListViewProfile>
+	// 		<ListViewProfile user={testUser}></ListViewProfile>
+	// 	</>
+	// );
+
 	//open dialog based on url
 	const url = window.location.pathname;
-	const [followersDialogOpen, setFollowersDialogOpen] = useState<boolean>(
-		url.includes("/followers")
-	);
-	const [followingDialogOpen, setFollowingDialogOpen] = useState<boolean>(
-		url.includes("/following")
-	);
 
-	//close dialog functions
-	const closeFollowers = () => {
-		setFollowersDialogOpen(false);
-		navigate(`/${user.profile.tag}`);
-	};
-	const closeFollowing = () => {
-		setFollowingDialogOpen(false);
-		navigate(`/${user.profile.tag}`);
-	};
+	// useEffect(() => {
+	// 	if (url.includes("/following") || url.includes("/followers")) {
+	// 		console.log(url);
+	// 		console.log(dialogState);
 
-	useEffect(() => {
-		console.log(url);
-
-		setFollowersDialogOpen(url.includes("/followers"));
-		setFollowingDialogOpen(url.includes("/following"));
-	}, [url]);
-
-	//switch tabs
-	useEffect(() => {
-		switch (currTab) {
-			case "posts":
-				setPosts(testPosts);
-				break;
-			case "liked":
-				setPosts([]);
-				break;
-			case "comments":
-				setPosts([]);
-				break;
-			default:
-				break;
-		}
-	}, [currTab]);
+	// 		dialogState?.setDialog(<>hey</>);
+	// 	}
+	// }, [dialogState, url]);
 
 	return (
 		<MainLayout>
@@ -91,6 +74,17 @@ export const ProfilePage: React.FC<ProfilePageProps> = () => {
 						</div>
 						<div>{user.profile.bio}</div>
 					</div>
+					<button
+						className={`px-2 py-1 m-4 h-fit border-[1px] rounded-3xl duration-75 border-gray hover:bg-mainDark ${
+							following ? "bg-gray" : ""
+						}`}
+						onClick={() => {
+							console.log("follow button");
+							setFollowing(!following);
+						}}
+					>
+						{following ? "Unfollow" : "Follow"}
+					</button>
 					{/* <div className="mr-10">followers following maybe?</div> */}
 				</div>
 
@@ -141,31 +135,6 @@ export const ProfilePage: React.FC<ProfilePageProps> = () => {
 					<PostComponent key={i} post={post} />
 				))}
 			</div>
-
-			<Dialog
-				open={followersDialogOpen}
-				closeFunction={closeFollowers}
-				component={
-					<>
-						{posts.map((post, i) => (
-							<PostComponent key={i} post={post} />
-						))}
-					</>
-				}
-				title="Followers"
-			/>
-			<Dialog
-				open={followingDialogOpen}
-				closeFunction={closeFollowing}
-				component={
-					<>
-						{posts.map((post, i) => (
-							<PostComponent key={i} post={post} />
-						))}
-					</>
-				}
-				title="Following"
-			/>
 		</MainLayout>
 	);
 };
