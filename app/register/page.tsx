@@ -1,6 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import type { FormEvent } from "react";
+import { createUser } from "../../lib/users";
 import axios from "axios";
 
 const Page = () => {
@@ -12,24 +13,17 @@ const Page = () => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsFetching(true);
-    try {
-      const { data } = await axios.post(
-        "http://localhost:3000/api/auth/login",
-        {
-          email,
-          password,
-        }
-      );
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
+    const { data } = await axios.post("http://localhost:3000/api/users/", {
+      email,
+      password,
+    });
     setIsFetching(false);
+    console.log(data);
   };
 
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
-      <h1>Login</h1>
+      <h1>Register</h1>
       <span>email</span>
       <input
         type="text"

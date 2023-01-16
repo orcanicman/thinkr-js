@@ -1,33 +1,34 @@
 "use client";
 import React from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { CommentIcon } from "../../src/assets/CommentIcon";
-import { DotMenuIcon } from "../../src/assets/DotMenuIcon";
-import { LikeIcon } from "../../src/assets/LikeIcon";
-import { RepostIcon } from "../../src/assets/RepostIcon";
-import { ShareIcon } from "../../src/assets/ShareIcon";
+import { CommentIcon } from "../../components/assets/CommentIcon";
+import { DotMenuIcon } from "../../components/assets/DotMenuIcon";
+import { LikeIcon } from "../../components/assets/LikeIcon";
+import { RepostIcon } from "../../components/assets/RepostIcon";
+import { ShareIcon } from "../../components/assets/ShareIcon";
 import { relativeDateFormatter } from "../../src/helpers/relativeDateFormatter";
 import Image from "next/image";
-import ProfileImage from "../../src/assets/Profile_Image.png";
+import ProfileImage from "../../components/assets/Profile_Image.png";
+import { Comment, Post as IPost, Prisma, Profile, User } from "@prisma/client";
 
 interface PostProps {
-  post: any;
-  // post: IPost & {
-  //   comments: Comment[];
-  //   likedBy: User[];
-  //   user: User & {
-  //     profile: Profile | null;
-  //   };
-  // };
+  post: IPost & {
+    _count: Prisma.PostCountOutputType;
+    comments: Comment[];
+    likedBy: User[];
+    user: User & {
+      profile: Profile | null;
+    };
+  };
 }
 
 export const Post: React.FC<PostProps> = ({ post }) => {
-  // const navigate = useRouter();
+  const navigate = useRouter();
 
   return (
     <div
-      // onClick={() => navigate.push(`/${post.user?.profile?.tag}/${post.id}`)}
+      onClick={() => navigate.push(`/${post.user?.profile?.tag}/${post.id}`)}
       className="flex w-full text-left bg-darkTransparentHighlight hover:bg-darkHighlight rounded-xl mb-8 p-6 -z-10 hover:cursor-pointer duration-75 ease-out transition-all"
       tabIndex={0}
     >

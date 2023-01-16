@@ -1,17 +1,17 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import Logo from "../../src/assets/logo";
+import Logo from "../../components/assets/logo";
 
 const TopBar = () => {
-  const [logoClicked, setLogoClicked] = useState(0);
+  const [logoClickedCount, setLogoClickedCount] = useState(0);
 
   const handleEasterEgg = (
     _event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     if (location.pathname === "/") {
       // add check if user is scrolled all the way up.
-      setLogoClicked(logoClicked + 1);
+      setLogoClickedCount(logoClickedCount + 1);
     }
   };
 
@@ -22,7 +22,7 @@ const TopBar = () => {
           <div
             onClick={handleEasterEgg}
             style={{
-              transform: `rotate(${logoClicked * 90 + "deg"})`,
+              transform: `rotate(${logoClickedCount * 90 + "deg"})`,
             }}
             className={`cursor-pointer transition-all`}
           >

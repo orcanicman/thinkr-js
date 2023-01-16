@@ -16,20 +16,4 @@ const Page = async () => {
   return posts.map((post, i) => <Post key={i} post={post} data-superjson />);
 };
 
-// post: Post & {
-//   comments: Comment[];
-//   likedBy: User[];
-//   user: User & {
-//       profile: Profile | null;
-//   };
-// }
-
-// post: Post & {
-//   comments: Comment[];
-//   likedBy: User[];
-//   user: User & {
-//       profile: Profile | null;
-//   };
-// }
-
 export default Page;
