@@ -36,7 +36,6 @@ const MainLayout = async ({ children }: MainProps) => {
                 tag: "testUser",
                 userId: "a",
               },
-              accountId: null,
               followedBy: [],
               isFollowing: [],
             }}

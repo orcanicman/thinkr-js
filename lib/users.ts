@@ -66,7 +66,21 @@ export async function getProfileWithUserByTag(tag: string) {
     const profile = await prisma.profile.findUniqueOrThrow({
       where: { tag: tag },
       include: {
-        user: { include: { _count: true, followedBy: true, following: true } },
+        user: {
+          include: {
+            _count: true,
+            followedBy: true,
+            following: true,
+            posts: {
+              include: {
+                _count: true,
+                comments: true,
+                likedBy: true,
+                user: { include: { profile: true } },
+              },
+            },
+          },
+        },
       },
     });
     return { profile };
