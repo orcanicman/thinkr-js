@@ -6,9 +6,6 @@ import { Post } from "../Post";
 
 const getUser = async (tag: string) => {
   const { profile, error } = await getProfileWithUserByTag(tag);
-  if (!profile) {
-    throw new Error("Failed to fetch data");
-  }
 
   return profile;
 };
@@ -41,10 +38,14 @@ const Page = async ({
         <div className="flex flex-row justify-between">
           <div className="flex flex-col ml-10 mb-1 space-y-2">
             <div className="space-x-3">
-              <span className="font-bold text-2xl">{profile.name}</span>
-              <span className="text-gray">@{profile.tag}</span>
+              <span className="font-bold text-2xl">
+                {profile?.name ?? `@${usertag}`}
+              </span>
+              <span className="text-gray">
+                {profile?.tag && `@${profile?.tag}`}
+              </span>
             </div>
-            <div>{profile.bio}</div>
+            <div>{profile?.bio}</div>
           </div>
           <button
             className={`px-2 py-1 m-4 h-fit border-[1px] rounded-3xl duration-75 border-gray hover:bg-mainDark ${
@@ -83,8 +84,10 @@ const Page = async ({
         </div>
       </div>
       <div className="">
-        {profile.user.posts.length
-          ? profile.user.posts.map((post, i) => <Post key={i} post={post} />)
+        {profile?.user.posts.length
+          ? profile?.user.posts.map((post, i) => (
+              <Post key={i} post={post} data-superjson />
+            ))
           : "this user has no posts"}
       </div>
     </div>
