@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getAccountWithEmail } from "../../../../lib/users";
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
@@ -10,6 +11,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       if (!account?.password === password) throw new Error("Invalid login");
 
       // user is now logged in, make jwt refresh & auth token with userId stored in it.
+
       return res.status(200).json({ msg: "LMFAOOO" });
     } catch (error) {
       return res.status(500).json({ error: error });
